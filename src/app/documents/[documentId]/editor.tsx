@@ -15,6 +15,7 @@ import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import Underline from '@tiptap/extension-underline';
 import Highlight from '@tiptap/extension-highlight';
+import Link from '@tiptap/extension-link';
 
 import { useEditor, EditorContent } from '@tiptap/react';
 import { useEditorStore } from '@/store/use-editor-store';
@@ -72,7 +73,13 @@ export const Editor = () => {
             TableHeader,
             TableCell,
             Highlight.configure({ multicolor: true }),
-            Color
+            Color,
+            Link.configure({
+                openOnClick: false,
+                autolink: true,
+                defaultProtocol: 'https',
+                protocols: ['http', 'https'],
+            }),
         ],
         content: `
         <table>

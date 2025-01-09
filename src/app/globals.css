@@ -88,6 +88,26 @@ body {
 }
 
 .tiptap {
+
+  /* Code and preformatted text styles */
+  code {
+    background-color: var(--primary-foreground);
+    border-radius: 0.4rem;
+    color: var(--black);
+    font-size: 0.85rem;
+    padding: 0.25em 0.3em;
+  }
+
+  /* Link styles */
+  a {
+    @apply text-blue-600;
+    cursor: pointer;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
   h1, 
   h2, 
   h3, 
