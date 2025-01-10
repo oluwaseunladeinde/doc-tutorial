@@ -18,6 +18,8 @@ import Underline from '@tiptap/extension-underline';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 
+import { FontSizeExtension } from "@/extensions/font-size";
+
 import { useEditor, EditorContent } from '@tiptap/react';
 import { useEditorStore } from '@/store/use-editor-store';
 
@@ -58,6 +60,7 @@ export const Editor = () => {
         },
         extensions: [
             StarterKit,
+            FontSizeExtension,
             Underline,
             FontFamily,
             TextAlign.configure({
