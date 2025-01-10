@@ -1,5 +1,7 @@
 "use client";
 
+import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditorStore } from '@/store/use-editor-store';
 
 import StarterKit from '@tiptap/starter-kit';
 import FontFamily from '@tiptap/extension-font-family';
@@ -19,9 +21,7 @@ import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
 
 import { FontSizeExtension } from "@/extensions/font-size";
-
-import { useEditor, EditorContent } from '@tiptap/react';
-import { useEditorStore } from '@/store/use-editor-store';
+import { LineHeightExtension } from "@/extensions/line-height";
 
 export const Editor = () => {
 
@@ -61,6 +61,7 @@ export const Editor = () => {
         extensions: [
             StarterKit,
             FontSizeExtension,
+            LineHeightExtension,
             Underline,
             FontFamily,
             TextAlign.configure({

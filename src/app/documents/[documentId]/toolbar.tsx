@@ -21,6 +21,7 @@ import {
     ItalicIcon,
     Link2,
     List,
+    ListCollapse,
     ListOrdered,
     ListTodoIcon,
     LucideIcon,
@@ -52,6 +53,43 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+
+
+const LineHeightButton = () => {
+    const { editor } = useEditorStore();
+
+    const lineHeights = [
+        { label: "Default", value: "normal", icon: AlignLeft },
+        { label: "Single", value: "1", icon: AlignCenter },
+        { label: "1.15", value: "1.15", icon: AlignRight },
+        { label: "1.5", value: "1.5", icon: AlignJustify },
+        { label: "Double", value: "2", icon: AlignJustify },
+    ];
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <button className={"h-7 min-w-7 shrink-0 flex flex-col items-center justify-center rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm"}>
+                    <ListCollapse className='size-4' />
+                </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='p-1 flex flex-col gap-y-1'>
+                {lineHeights.map(({ label, value }) => (
+                    <button
+                        key={value}
+                        onClick={() => editor?.chain().focus().setLineHeight(value).run()}
+                        className={cn(
+                            "flex items-center gap-x-2 px-2 py-1 rounded-sm hover:bg-neutral-200/80",
+                            editor?.getAttributes("paragraph").lineHeight === value && "bg-neutral-200/80"
+                        )}
+                    >
+                        <span className='text-sm'>{label}</span>
+                    </button>
+                ))}
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
 
 const FontSizeButton = () => {
     const { editor } = useEditorStore();
@@ -592,7 +630,7 @@ export const Toolbar = () => {
             <LinkButton />
             <ImageButton />
             <AlignButton />
-            {/* TODO: Line Height */}
+            <LineHeightButton />
             <ListButton />
             {sections[2].map((item) => (
                 <ToolbarButton key={item.label} {...item} />
