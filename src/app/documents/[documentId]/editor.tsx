@@ -92,29 +92,6 @@ export const Editor = () => {
                 protocols: ['http', 'https'],
             }),
         ],
-        content: `
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <p>This is a basic example of implementing images. Drag to re-order.</p>
-        <img src="https://placehold.co/800x400/6A00F5/white" />
-
-        <p><span style="font-family: serif">Serious people use serif fonts anyway.</span></p>
-        <p><span style="font-family: monospace">The cool kids can apply monospace fonts aswell.</span></p>
-        <p><span style="font-family: 'Exo 2'">TipTap even can handle exotic fonts as Exo 2.</span></p>
-      `,
     })
 
     return (
