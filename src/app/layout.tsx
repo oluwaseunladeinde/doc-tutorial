@@ -3,6 +3,14 @@ import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import "./globals.css";
+
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 
 const inter = Inter({
@@ -20,6 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <html lang="en">
       <body
         className={inter.className}
@@ -31,5 +40,6 @@ export default function RootLayout({
         </NuqsAdapter>
       </body>
     </html>
+
   );
 }
