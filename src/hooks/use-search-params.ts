@@ -6,3 +6,10 @@ export const useSearchParams = () => {
         parseAsString.withDefault("").withOptions({ clearOnDefault: true })
     );
 };
+
+// export function useSearchParams(){
+//     return useQueryState(
+//         "search",
+//         parseAsString.withDefault("").withOptions({ clearOnDefault: true })
+//     );
+// }

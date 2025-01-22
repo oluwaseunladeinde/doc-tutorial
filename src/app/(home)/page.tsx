@@ -1,4 +1,6 @@
-"use client"
+"use client";
+
+import { useSearchParams } from "@/hooks/use-search-params";
 
 import { usePaginatedQuery } from "convex/react";
 import { Navbar } from "./navbar";
@@ -7,9 +9,11 @@ import { api } from "../../../convex/_generated/api";
 import { DocumentsTable } from "./documents-table";
 
 
-const HomePage = () => {
 
-  const { results, status, loadMore } = usePaginatedQuery(api.documents.get, {}, { initialNumItems: 5 });
+
+const HomePage = () => {
+  const [search] = useSearchParams();
+  const { results, status, loadMore } = usePaginatedQuery(api.documents.get, { search }, { initialNumItems: 5 });
 
 
   return (
