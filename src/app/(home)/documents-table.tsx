@@ -16,6 +16,7 @@ import {
 import { Building, CircleUser, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { DocumentMenu } from './document-menu';
+import { Button } from '@/components/ui/button';
 
 
 interface DocumentsTableProps {
@@ -64,6 +65,16 @@ export const DocumentsTable = ({
                     </TableBody>
                 </Table>
             )}
+            <div className="flex items-center justify-center ">
+                <Button
+                    variant={"ghost"}
+                    size={"sm"}
+                    onClick={() => loadMore(5)}
+                    disabled={status !== "CanLoadMore"}
+                >
+                    {status === "CanLoadMore" ? "Load more" : "End of results"}
+                </Button>
+            </div>
         </div>
     )
 }
