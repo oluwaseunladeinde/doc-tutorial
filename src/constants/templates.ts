@@ -4,7 +4,8 @@ export const templates = [
     {
         id: "blank",
         label: "Blank Document",
-        imageUrl: "/documents/images/blank-document.svg"
+        imageUrl: "/documents/images/blank-document.svg",
+        initialContent: ""
     },
     {
         id: "software-proposal",
