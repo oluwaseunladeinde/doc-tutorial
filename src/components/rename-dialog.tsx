@@ -1,7 +1,9 @@
 "use client";
 
+import { toast } from 'sonner';
 import { useState } from "react";
 import { useMutation } from "convex/react";
+
 
 import {
     Dialog,
@@ -35,15 +37,12 @@ export const RenameDialog = ({ documentId, children }: RenameDialogProps) => {
         e.preventDefault();
         setIsUpdating(true);
 
-        update({
-            id: documentId,
-            title: title.trim() || "Untitled"
-        })
-            .then(() => {
-                setOpen(false);
-            })
+        update({ id: documentId, title: title.trim() || "Untitled" })
+            .then(() => { toast.success("Document renamed successfully") })
+            .catch(() => toast.error("Something went wrong"))
             .finally(() => {
                 setIsUpdating(false);
+                setOpen(false);
             });
     }
 

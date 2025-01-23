@@ -9,8 +9,6 @@ import { api } from "../../../convex/_generated/api";
 import { DocumentsTable } from "./documents-table";
 
 
-
-
 const HomePage = () => {
   const [search] = useSearchParams();
   const { results, status, loadMore } = usePaginatedQuery(api.documents.get, { search }, { initialNumItems: 5 });

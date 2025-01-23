@@ -13,7 +13,7 @@ import {
     TableHeader,
     TableRow
 } from "@/components/ui/table"
-import { Building, CircleUser, Loader2 } from 'lucide-react';
+import { Building2, CircleUser, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { DocumentMenu } from './document-menu';
 import { Button } from '@/components/ui/button';
@@ -93,10 +93,10 @@ const DocumentRow = ({ document }: DocumentRowProps) => {
                 {document.title}
             </TableCell>
             <TableCell className='text-muted-foreground hidden md:flex items-center gap-2'>
-                {document.organizationalId
-                    ? <Building className='size-4' />
+                {document.organizationId
+                    ? <Building2 className='size-4' />
                     : <CircleUser className='size-4' />}
-                {document.organizationalId ? "Organization" : "Personal"}
+                {document.organizationId ? "Organization" : "Personal"}
             </TableCell>
             <TableCell className='text-muted-foreground hidden md:table-cell'>
                 {format(new Date(document._creationTime), 'MMM dd, yyyy')}

@@ -4,13 +4,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import "./globals.css";
 
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+import { Toaster } from "sonner";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 
 const inter = Inter({
@@ -35,6 +29,7 @@ export default function RootLayout({
       >
         <NuqsAdapter>
           <ConvexClientProvider>
+            <Toaster richColors />
             {children}
           </ConvexClientProvider>
         </NuqsAdapter>

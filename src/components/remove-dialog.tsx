@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useMutation } from "convex/react";
+import { toast } from "sonner";
 
 import {
     AlertDialog,
@@ -52,6 +53,8 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
                             e.stopPropagation();
                             setIsRemoving(true);
                             remove({ id: documentId })
+                                .then(() => toast.success("Document removed successfully"))
+                                .catch(() => toast.error("Something went wrong"))
                                 .finally(() => setIsRemoving(false))
                         }}
                     >
