@@ -23,9 +23,10 @@ import { api } from "../../convex/_generated/api";
 interface RenameDialogProps {
     documentId: Id<"documents">;
     children: React.ReactNode;
+    initialTitle: string;
 }
 
-export const RenameDialog = ({ documentId, children }: RenameDialogProps) => {
+export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialogProps) => {
 
     const update = useMutation(api.documents.updateById);
     const [isUpdating, setIsUpdating] = useState(false);

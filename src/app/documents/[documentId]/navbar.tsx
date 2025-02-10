@@ -2,8 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs';
+
+import { RemoveDialog } from '@/components/remove-dialog';
+import { RenameDialog } from '@/components/rename-dialog';
 
 import {
     Menubar,
@@ -21,6 +25,7 @@ import {
 import { DocumentInput } from './document-input';
 import { Bold, File, FileJson, FilePen, FilePlus2, FileText, Globe, Italic, Printer, Redo2, RemoveFormatting, Strikethrough, TextIcon, Trash, Underline, Undo2 } from 'lucide-react';
 
+import { useMutation } from 'convex/react';
 import { BsFilePdf } from 'react-icons/bs';
 import { Avatars } from './avatars';
 
@@ -28,12 +33,28 @@ import { useEditorStore } from '@/store/use-editor-store';
 import { Inbox } from './inbox';
 import { Doc } from '../../../../convex/_generated/dataModel';
 
+import { api } from '../../../../convex/_generated/api';
+import { toast } from 'sonner';
 interface NavbarProps {
     data: Doc<"documents">;
 }
 export const Navbar = ({ data }: NavbarProps) => {
-
+    const router = useRouter()
     const { editor } = useEditorStore();
+
+    const mutation = useMutation(api.documents.create)
+
+    const onNewDocument = () => {
+        mutation({
+            title: "Untitled Document",
+            initialContent: "",
+        }).then((id) => {
+            toast.success("Document created")
+            router.push(`/documents/${id}`);
+        }).catch(() => {
+            toast.error("Something went wrong")
+        });
+    }
 
     const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
         editor
@@ -114,19 +135,29 @@ export const Navbar = ({ data }: NavbarProps) => {
                                             </MenubarItem>
                                         </MenubarSubContent>
                                     </MenubarSub>
-                                    <MenubarItem>
+                                    <MenubarItem onClick={onNewDocument}>
                                         <FilePlus2 className='size-4 mr-2' />
                                         New Document
                                     </MenubarItem>
                                     <MenubarSeparator />
-                                    <MenubarItem>
-                                        <FilePen className='size-4 mr-2' />
-                                        Rename
-                                    </MenubarItem>
-                                    <MenubarItem>
-                                        <Trash className='size-4 mr-2' />
-                                        Remove
-                                    </MenubarItem>
+                                    <RenameDialog documentId={data._id} initialTitle={data.title}>
+                                        <MenubarItem
+                                            onClick={e => e.stopPropagation()}
+                                            onSelect={e => e.preventDefault()}
+                                        >
+                                            <FilePen className='size-4 mr-2' />
+                                            Rename
+                                        </MenubarItem>
+                                    </RenameDialog>
+                                    <RemoveDialog documentId={data._id}>
+                                        <MenubarItem
+                                            onClick={e => e.stopPropagation()}
+                                            onSelect={e => e.preventDefault()}
+                                        >
+                                            <Trash className='size-4 mr-2' />
+                                            Remove
+                                        </MenubarItem>
+                                    </RemoveDialog>
                                     <MenubarSeparator />
                                     <MenubarItem onClick={() => window.print()}>
                                         <Printer className='size-4 mr-2' />
