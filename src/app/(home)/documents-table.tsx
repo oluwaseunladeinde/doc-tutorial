@@ -17,6 +17,7 @@ import { Building2, CircleUser, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { DocumentMenu } from './document-menu';
 import { Button } from '@/components/ui/button';
+import { DOCUMENT_BATCH_SIZE } from '@/constants/utils';
 
 
 interface DocumentsTableProps {
@@ -65,11 +66,11 @@ export const DocumentsTable = ({
                     </TableBody>
                 </Table>
             )}
-            <div className="flex items-center justify-center ">
+            <div className="flex items-center justify-center">
                 <Button
                     variant={"ghost"}
                     size={"sm"}
-                    onClick={() => loadMore(5)}
+                    onClick={() => loadMore(DOCUMENT_BATCH_SIZE)}
                     disabled={status !== "CanLoadMore"}
                 >
                     {status === "CanLoadMore" ? "Load more" : "End of results"}

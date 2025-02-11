@@ -7,11 +7,13 @@ import { Navbar } from "./navbar";
 import { TemplateGallery } from "./template-gallery";
 import { api } from "../../../convex/_generated/api";
 import { DocumentsTable } from "./documents-table";
+import { DOCUMENT_BATCH_SIZE } from "@/constants/utils";
 
 
 const HomePage = () => {
   const [search] = useSearchParams();
-  const { results, status, loadMore } = usePaginatedQuery(api.documents.get, { search }, { initialNumItems: 5 });
+  const { results, status, loadMore } =
+    usePaginatedQuery(api.documents.get, { search }, { initialNumItems: DOCUMENT_BATCH_SIZE });
 
 
   return (

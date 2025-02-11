@@ -1,0 +1,1 @@
+export const DOCUMENT_BATCH_SIZE = 5;
