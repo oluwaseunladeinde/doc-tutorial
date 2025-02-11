@@ -25,13 +25,13 @@ export const TemplateGallery = () => {
         setIsCreating(true);
         create({ title, initialContent })
             .then((documentId) => {
-                toast.success("Document created successfully");
+                toast.success("Document created");
                 router.push(`/documents/${documentId}`);
             })
             .catch(() => toast.error("Something went wrong"))
             .finally(() => {
                 setIsCreating(false);
-            })
+            });
     }
 
     return (
@@ -54,7 +54,7 @@ export const TemplateGallery = () => {
                                     <button
                                         className="size-full hover:border-blue-500 rounded-sm border hover:bg-blue-50 transition flex flex-col items-center justify-center gap-y-4 bg-white"
                                         disabled={isCreating}
-                                        onClick={() => onTemplateClick(template.label, "")}
+                                        onClick={() => onTemplateClick(template.label, template.initialContent)}
                                         style={{
                                             backgroundImage: `url(${template.imageUrl})`,
                                             backgroundSize: "cover",

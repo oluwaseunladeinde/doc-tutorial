@@ -31,7 +31,7 @@ export const RenameDialog = ({ documentId, children, initialTitle }: RenameDialo
     const update = useMutation(api.documents.updateById);
     const [isUpdating, setIsUpdating] = useState(false);
 
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(initialTitle);
     const [open, setOpen] = useState(false);
 
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
